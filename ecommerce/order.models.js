@@ -1,4 +1,16 @@
 import mongoose from 'mongoose'
+import { Product } from './product.models'
+
+const orderItemSchema = new mongoose.Schema({
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    },
+    quantity: {
+        type: Number, 
+        required: true
+    }
+})
 
 const orderSchema = new mongoose.Shema({
     orderPrice: {
@@ -11,7 +23,7 @@ const orderSchema = new mongoose.Shema({
         ref: 'User'
     }, 
     orderItems: {
-        
+        type: [orderItemSchema]
     }
 }, {timestamps: true})
 
